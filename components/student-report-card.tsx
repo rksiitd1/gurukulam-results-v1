@@ -1,6 +1,6 @@
 import type { StudentData, ExamResult } from "@/lib/data"
 
-// Define the color scheme to match the LaTeX document
+// Define the color scheme to match the new design
 const colors = {
   saffron: "#FF9933",
   darkgreen: "#138808",
@@ -11,21 +11,18 @@ const colors = {
 
 // Logo component to replace TikZ drawings
 const Logo = ({ type, color }: { type: "dbg" | "dbm"; color: string }) => (
-  <div className="flex flex-col items-center">
-    <div
-      className={`w-16 h-16 rounded-full border-2 flex items-center justify-center`}
-      style={{
-        backgroundColor: `${color}20`,
-        borderColor: color,
-      }}
-    >
-      <div className="text-xs font-bold" style={{ color: colors.navy }}>
-        {type === "dbg" ? "DBG" : "DBM"}
+  <div className="flex flex-col items-center w-24">
+    {type === "dbg" ? (
+      <div className="w-16 h-16 rounded-full bg-orange-100 border-2 border-orange-300 flex items-center justify-center relative">
+        <div className="w-6 h-0.5 bg-blue-900 absolute"></div>
+        <div className="w-0.5 h-6 bg-blue-900 absolute"></div>
       </div>
-    </div>
-    <div className="text-xs mt-1" style={{ color: colors.navy }}>
-      {type === "dbg" ? "DBG Logo" : "DBM Logo"}
-    </div>
+    ) : (
+      <div className="w-16 h-16 rounded-full bg-green-100 border-2 border-green-700 flex items-center justify-center relative">
+        <div className="w-10 h-10 rounded-full border-2 border-orange-500"></div>
+      </div>
+    )}
+    <span className="text-xs text-blue-900 mt-1">{type === "dbg" ? "DBG Logo" : "DBM Logo"}</span>
   </div>
 )
 
@@ -45,7 +42,7 @@ export default function StudentReportCard({ student, examResult }: StudentReport
   const getExamTitle = () => {
     switch (examResult.examType) {
       case "jigyasa-anveshan":
-        return `JIGYĀSA ANVESHAN ${examResult.examPeriod.toUpperCase()}`
+        return `JIGYASA ANVESHAN ${examResult.examPeriod.toUpperCase()}`
       case "bodha-manthan":
         return `BODHA MANTHAN ${examResult.examPeriod.toUpperCase()}`
       case "pragya-siddhi":
@@ -56,80 +53,55 @@ export default function StudentReportCard({ student, examResult }: StudentReport
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white min-h-screen relative">
+    <div className="max-w-4xl mx-auto p-6 bg-white relative" style={{fontFamily: 'serif'}}>
       {/* Decorative Border */}
-      <div
-        className="absolute inset-2 border-4 rounded-lg pointer-events-none"
-        style={{ borderColor: colors.saffron }}
-      />
-
-      {/* Institution Header */}
-      <div className="mb-6 mt-4">
-        <div className="p-6 rounded-lg" style={{ backgroundColor: colors.headerbg }}>
+      <div className="absolute inset-0 border-4 border-orange-300 m-2"></div>
+      
+      {/* Header Section */}
+      <div className="relative z-10 mb-6">
+        <div className="bg-yellow-50 p-4 border border-gray-200">
           <div className="flex items-center justify-between">
+            {/* Left Logo */}
             <Logo type="dbg" color={colors.saffron} />
-
-            <div className="text-center flex-1 mx-8">
-              <h1 className="text-3xl font-bold mb-2" style={{ color: colors.navy }}>
-                DIVYA BIHAR GLOBAL GURUKULAM
-              </h1>
-              <h2 className="text-xl font-bold mb-2" style={{ color: colors.darkgreen }}>
-                (DBG Gurukulam)
-              </h2>
-              <p className="text-lg mb-1">Raghopur, Supaul, Bihar – 852111</p>
-              <p className="mb-1">
-                Managed by: <strong>Divya Bihar Mission</strong>
-              </p>
-              <p className="italic" style={{ color: colors.saffron }}>
-                Education with Yogic Values
-              </p>
+            
+            {/* Center Content */}
+            <div className="text-center flex-1 mx-4">
+              <h1 className="text-3xl font-bold text-blue-900 mb-1">DIVYA BIHAR GLOBAL GURUKULAM</h1>
+              <h2 className="text-xl font-bold text-green-700 mb-2">(DBG Gurukulam)</h2>
+              <p className="text-base mb-1">Raghopur, Supaul, Bihar – 852111</p>
+              <p className="text-sm mb-1">Managed by: <span className="font-bold">Divya Bihar Mission</span></p>
+              <p className="text-sm italic text-orange-500">Education with Yogic Values</p>
             </div>
-
+            
+            {/* Right Logo */}
             <Logo type="dbm" color={colors.darkgreen} />
           </div>
         </div>
       </div>
 
       {/* Assessment Title */}
-      <div className="mb-6">
-        <div
-          className="text-center py-4 rounded-lg mx-auto max-w-2xl"
-          style={{ backgroundColor: `${colors.saffron}20` }}
-        >
-          <h2 className="text-xl font-bold mb-2" style={{ color: colors.navy }}>
-            {getExamTitle()}
-          </h2>
-          <h3 className="text-lg font-bold" style={{ color: colors.darkgreen }}>
-            Assessment Report
-          </h3>
-        </div>
+      <div className="bg-orange-100 p-4 mb-6 text-center">
+        <h3 className="text-xl font-bold text-blue-900 mb-1">{getExamTitle()}</h3>
+        <h4 className="text-lg font-bold text-green-700">
+          {examResult.examType === "jigyasa-anveshan" ? "Monthly Assessment Report" : 
+           examResult.examType === "bodha-manthan" ? "Term-End Assessment Report" : 
+           "Annual Assessment Report"}
+        </h4>
       </div>
 
       {/* Student Information */}
       <div className="mb-6">
         <table className="w-full border-collapse border border-gray-400">
           <tbody>
-            <tr style={{ backgroundColor: colors.lightgray }}>
-              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
-                Student Name: {student.name}
-              </td>
-              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
-                Class: {student.class}
-              </td>
-              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
-                Roll No: {student.rollNo}
-              </td>
-              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
-                Period: {examResult.examPeriod}
-              </td>
+            <tr className="bg-gray-100">
+              <td className="border border-gray-400 p-2 font-bold text-blue-900">Student Name: {student.name}</td>
+              <td className="border border-gray-400 p-2 font-bold text-blue-900">Class: {student.class}</td>
+              <td className="border border-gray-400 p-2 font-bold text-blue-900">Roll No: {student.rollNo}</td>
+              <td className="border border-gray-400 p-2 font-bold text-blue-900">Period: {examResult.examPeriod}</td>
             </tr>
             <tr>
-              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }} colSpan={2}>
-                Father's Name: {student.fatherName}
-              </td>
-              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }} colSpan={2}>
-                Mother's Name: {student.motherName}
-              </td>
+              <td className="border border-gray-400 p-2 font-bold text-blue-900" colSpan={2}>Father's Name: {student.fatherName}</td>
+              <td className="border border-gray-400 p-2 font-bold text-blue-900" colSpan={2}>Mother's Name: {student.motherName}</td>
             </tr>
           </tbody>
         </table>
@@ -137,27 +109,15 @@ export default function StudentReportCard({ student, examResult }: StudentReport
 
       {/* Academic Subjects */}
       <div className="mb-6">
-        <h3 className="text-center text-lg font-bold mb-3" style={{ color: colors.darkgreen }}>
-          ACADEMIC SUBJECTS
-        </h3>
+        <h3 className="text-center text-lg font-bold text-green-700 mb-3">ACADEMIC SUBJECTS</h3>
         <table className="w-full border-collapse border border-gray-400">
           <thead>
-            <tr style={{ backgroundColor: `${colors.navy}20` }}>
-              <th className="border border-gray-400 p-2 text-white font-bold" style={{ backgroundColor: colors.navy }}>
-                Subject
-              </th>
-              <th className="border border-gray-400 p-2 text-white font-bold" style={{ backgroundColor: colors.navy }}>
-                Raw Marks
-              </th>
-              <th className="border border-gray-400 p-2 text-white font-bold" style={{ backgroundColor: colors.navy }}>
-                Total
-              </th>
-              <th className="border border-gray-400 p-2 text-white font-bold" style={{ backgroundColor: colors.navy }}>
-                Scaled Marks
-              </th>
-              <th className="border border-gray-400 p-2 text-white font-bold" style={{ backgroundColor: colors.navy }}>
-                Out of
-              </th>
+            <tr className="bg-blue-800 text-white">
+              <th className="border border-gray-400 p-2 font-bold">Subject</th>
+              <th className="border border-gray-400 p-2 font-bold">Raw Marks</th>
+              <th className="border border-gray-400 p-2 font-bold">Total</th>
+              <th className="border border-gray-400 p-2 font-bold">Scaled Marks</th>
+              <th className="border border-gray-400 p-2 font-bold">Out of</th>
             </tr>
           </thead>
           <tbody>
@@ -170,7 +130,7 @@ export default function StudentReportCard({ student, examResult }: StudentReport
                 <td className="border border-gray-400 p-2 text-center">{subject.outOf}</td>
               </tr>
             ))}
-            <tr style={{ backgroundColor: `${colors.saffron}20` }}>
+            <tr className="bg-orange-100">
               <td className="border border-gray-400 p-2 font-bold">Academic Subtotal</td>
               <td className="border border-gray-400 p-2 text-center font-bold">{academicRawTotal}</td>
               <td className="border border-gray-400 p-2 text-center font-bold">{academicMaxTotal}</td>
@@ -183,48 +143,16 @@ export default function StudentReportCard({ student, examResult }: StudentReport
 
       {/* Co-Curricular Activities */}
       <div className="mb-6">
-        <h3 className="text-center text-lg font-bold mb-3" style={{ color: colors.darkgreen }}>
-          CO-CURRICULAR & EXTRA-CURRICULAR ACTIVITIES
-        </h3>
+        <h3 className="text-center text-lg font-bold text-green-700 mb-3">CO-CURRICULAR & EXTRA-CURRICULAR ACTIVITIES</h3>
         <table className="w-full border-collapse border border-gray-400">
           <thead>
-            <tr style={{ backgroundColor: `${colors.darkgreen}20` }}>
-              <th
-                className="border border-gray-400 p-2 text-white font-bold"
-                style={{ backgroundColor: colors.darkgreen }}
-              >
-                Activity
-              </th>
-              <th
-                className="border border-gray-400 p-2 text-white font-bold"
-                style={{ backgroundColor: colors.darkgreen }}
-              >
-                Marks
-              </th>
-              <th
-                className="border border-gray-400 p-2 text-white font-bold"
-                style={{ backgroundColor: colors.darkgreen }}
-              >
-                Out of
-              </th>
-              <th
-                className="border border-gray-400 p-2 text-white font-bold"
-                style={{ backgroundColor: colors.darkgreen }}
-              >
-                Activity
-              </th>
-              <th
-                className="border border-gray-400 p-2 text-white font-bold"
-                style={{ backgroundColor: colors.darkgreen }}
-              >
-                Marks
-              </th>
-              <th
-                className="border border-gray-400 p-2 text-white font-bold"
-                style={{ backgroundColor: colors.darkgreen }}
-              >
-                Out of
-              </th>
+            <tr className="bg-green-700 text-white">
+              <th className="border border-gray-400 p-2 font-bold">Activity</th>
+              <th className="border border-gray-400 p-2 font-bold">Marks</th>
+              <th className="border border-gray-400 p-2 font-bold">Out of</th>
+              <th className="border border-gray-400 p-2 font-bold">Activity</th>
+              <th className="border border-gray-400 p-2 font-bold">Marks</th>
+              <th className="border border-gray-400 p-2 font-bold">Out of</th>
             </tr>
           </thead>
           <tbody>
@@ -242,8 +170,8 @@ export default function StudentReportCard({ student, examResult }: StudentReport
                 </tr>
               )
             })}
-            <tr style={{ backgroundColor: `${colors.saffron}20` }}>
-              <td className="border border-gray-400 p-2 text-center font-bold" colSpan={6}>
+            <tr className="bg-orange-100">
+              <td className="border border-gray-400 p-2 font-bold text-center" colSpan={6}>
                 Co-Curricular Subtotal: {coActivitiesSubtotal} / {coActivitiesTotal}
               </td>
             </tr>
@@ -253,28 +181,28 @@ export default function StudentReportCard({ student, examResult }: StudentReport
 
       {/* Performance Summary */}
       <div className="mb-6">
-        <div className="p-4 rounded-lg" style={{ backgroundColor: `${colors.navy}10` }}>
-          <h3 className="text-center text-lg font-bold mb-3" style={{ color: colors.darkgreen }}>
-            PERFORMANCE SUMMARY
-          </h3>
-          <table className="w-4/5 mx-auto border-collapse border border-gray-400">
-            <thead>
-              <tr style={{ backgroundColor: `${colors.saffron}30` }}>
-                <th className="border border-gray-400 p-2 font-bold">Total Marks</th>
-                <th className="border border-gray-400 p-2 font-bold">Maximum Marks</th>
-                <th className="border border-gray-400 p-2 font-bold">Percentage</th>
-                <th className="border border-gray-400 p-2 font-bold">Grade</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-gray-400 p-2 text-center">{examResult.totalMarks}</td>
-                <td className="border border-gray-400 p-2 text-center">{examResult.maxMarks}</td>
-                <td className="border border-gray-400 p-2 text-center">{examResult.percentage}%</td>
-                <td className="border border-gray-400 p-2 text-center font-bold">{examResult.grade}</td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="bg-blue-50 p-4 border border-gray-200">
+          <h3 className="text-center text-lg font-bold text-green-700 mb-3">PERFORMANCE SUMMARY</h3>
+          <div className="flex justify-center">
+            <table className="border-collapse border border-gray-400 w-4/5">
+              <thead>
+                <tr className="bg-orange-200">
+                  <th className="border border-gray-400 p-2 font-bold">Total Marks</th>
+                  <th className="border border-gray-400 p-2 font-bold">Maximum Marks</th>
+                  <th className="border border-gray-400 p-2 font-bold">Percentage</th>
+                  <th className="border border-gray-400 p-2 font-bold">Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-gray-400 p-2 text-center">{examResult.totalMarks}</td>
+                  <td className="border border-gray-400 p-2 text-center">{examResult.maxMarks}</td>
+                  <td className="border border-gray-400 p-2 text-center">{examResult.percentage}%</td>
+                  <td className="border border-gray-400 p-2 text-center font-bold">{examResult.grade}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -282,8 +210,8 @@ export default function StudentReportCard({ student, examResult }: StudentReport
       <div className="mb-6">
         <table className="w-full border-collapse border border-gray-400">
           <thead>
-            <tr style={{ backgroundColor: colors.lightgray }}>
-              <th className="border border-gray-400 p-2 text-left font-bold">Class Teacher's Remarks:</th>
+            <tr className="bg-gray-100">
+              <th className="border border-gray-400 p-2 font-bold text-left">Class Teacher's Remarks:</th>
             </tr>
           </thead>
           <tbody>
@@ -300,7 +228,7 @@ export default function StudentReportCard({ student, examResult }: StudentReport
       <div className="mb-6">
         <table className="w-full border-collapse border border-gray-400">
           <thead>
-            <tr style={{ backgroundColor: colors.lightgray }}>
+            <tr className="bg-gray-100">
               <th className="border border-gray-400 p-2 font-bold">Class Teacher</th>
               <th className="border border-gray-400 p-2 font-bold">Date of Issue</th>
               <th className="border border-gray-400 p-2 font-bold">Principal</th>
@@ -317,8 +245,8 @@ export default function StudentReportCard({ student, examResult }: StudentReport
       </div>
 
       {/* Footer Line */}
-      <div className="text-center">
-        <hr className="w-3/4 mx-auto" style={{ borderColor: colors.saffron, borderWidth: "1px" }} />
+      <div className="flex justify-center">
+        <div className="w-96 h-0.5 bg-orange-500"></div>
       </div>
     </div>
   )
