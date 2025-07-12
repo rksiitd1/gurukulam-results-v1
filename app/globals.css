@@ -77,11 +77,47 @@
   body {
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+    margin: 0;
+    padding: 0;
   }
 
   @page {
-    margin: 0.5in;
+    margin: 0.25in;
     size: A4;
+  }
+
+  /* Ensure the report card fits on one page */
+  .max-w-4xl {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0.25in !important;
+  }
+
+  /* Optimize table printing */
+  table {
+    page-break-inside: avoid;
+    border-collapse: collapse;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  /* Ensure no page breaks in critical sections */
+  .mb-4, .mb-6 {
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Optimize font sizes for print */
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+  }
+
+  /* Ensure logos and decorative elements print properly */
+  .bg-orange-100, .bg-yellow-50, .bg-blue-50, .bg-gray-100 {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }
 
