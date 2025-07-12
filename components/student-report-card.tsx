@@ -67,7 +67,10 @@ export default function StudentReportCard({ student, examResult }: StudentReport
             
             {/* Center Content */}
             <div className="text-center flex-1 mx-3 print:mx-2">
-              <h1 className="text-2xl print:text-xl font-bold text-blue-900 mb-1 print:mb-0">DIVYA BIHAR GLOBAL GURUKULAM</h1>
+              <h1 className="text-2xl print:text-xl font-bold text-blue-900 mb-1 print:mb-0">
+                DIVYA BIHAR GLOBAL GURUKULAM
+                <span className="block text-yellow-700 text-lg print:text-base font-serif font-semibold">दिव्य बिहार ग्लोबल गुरुकुलम्</span>
+              </h1>
               <h2 className="text-lg print:text-base font-bold text-green-700 mb-1 print:mb-0">(DBG Gurukulam)</h2>
               <p className="text-sm print:text-xs mb-1 print:mb-0">Raghopur, Supaul, Bihar – 852111</p>
               <p className="text-xs print:text-xs mb-1 print:mb-0">Managed by: <span className="font-bold">Divya Bihar Mission</span></p>
@@ -79,6 +82,17 @@ export default function StudentReportCard({ student, examResult }: StudentReport
               <Logo type="dbm" />
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Mantra Section */}
+      <div className="bg-yellow-50 border border-yellow-200 rounded-md py-2 px-4 mb-4 print:mb-2 text-center max-w-2xl mx-auto">
+        <div className="text-yellow-800 font-semibold leading-snug text-base print:text-sm font-serif">
+          ॐ सह नाववतु ।<br/>
+          सह नौ भुनक्तु ।<br/>
+          सह वीर्यं करवावहै ।<br/>
+          तेजस्वि नावधीतमस्तु मा विद्विषावहै ।।<br/>
+          ॐ शान्तिः शान्तिः शान्तिः ॥
         </div>
       </div>
 
@@ -97,14 +111,14 @@ export default function StudentReportCard({ student, examResult }: StudentReport
         <table className="w-full border-collapse border border-gray-400 text-sm print:text-xs">
           <tbody>
             <tr className="bg-gray-100">
-              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900">Student Name: {student.name}</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900">Class: {student.class}</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900">Roll No: {student.rollNo}</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900">Period: {examResult.examPeriod}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900">Student Name / विद्यार्थी नाम: {student.name}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900">Class / कक्षा: {student.class}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900">Roll No / क्रमांक: {student.rollNo}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900">Period / अवधि: {examResult.examPeriod}</td>
             </tr>
             <tr>
-              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900" colSpan={2}>Father's Name: {student.fatherName}</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900" colSpan={2}>Mother's Name: {student.motherName}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900" colSpan={2}>Father's Name / पिता का नाम: {student.fatherName}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-blue-900" colSpan={2}>Mother's Name / माता का नाम: {student.motherName}</td>
             </tr>
           </tbody>
         </table>
@@ -112,15 +126,17 @@ export default function StudentReportCard({ student, examResult }: StudentReport
 
       {/* Academic Subjects */}
       <div className="mb-4 print:mb-2">
-        <h3 className="text-center text-base print:text-sm font-bold text-green-700 mb-2 print:mb-1">ACADEMIC SUBJECTS</h3>
+        <h3 className="text-center text-base print:text-sm font-bold text-green-700 mb-2 print:mb-1">
+          ACADEMIC SUBJECTS / पाठ्यक्रम विषय
+        </h3>
         <table className="w-full border-collapse border border-gray-400 text-sm print:text-xs">
           <thead>
             <tr className="bg-blue-800 text-white">
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Subject</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Raw Marks</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Total</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Scaled Marks</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Out of</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Subject / विषय</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Raw Marks / कुल अंक</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Total / पूर्णांक</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Scaled Marks / स्केल्ड अंक</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Out of / अधिकतम</th>
             </tr>
           </thead>
           <tbody>
@@ -146,16 +162,18 @@ export default function StudentReportCard({ student, examResult }: StudentReport
 
       {/* Co-Curricular Activities */}
       <div className="mb-4 print:mb-2">
-        <h3 className="text-center text-base print:text-sm font-bold text-green-700 mb-2 print:mb-1">CO-CURRICULAR & EXTRA-CURRICULAR ACTIVITIES</h3>
+        <h3 className="text-center text-base print:text-sm font-bold text-green-700 mb-2 print:mb-1">
+          CO-CURRICULAR ACTIVITIES / सह-पाठ्यक्रम गतिविधियां
+        </h3>
         <table className="w-full border-collapse border border-gray-400 text-sm print:text-xs">
           <thead>
             <tr className="bg-green-700 text-white">
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Activity</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Marks</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Out of</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Activity</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Marks</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Out of</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Activity / गतिविधि</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Marks / अंक</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Out of / अधिकतम</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Activity / गतिविधि</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Marks / अंक</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Out of / अधिकतम</th>
             </tr>
           </thead>
           <tbody>
@@ -185,7 +203,9 @@ export default function StudentReportCard({ student, examResult }: StudentReport
       {/* Performance Summary */}
       <div className="mb-4 print:mb-2">
         <div className="bg-blue-50 p-3 print:p-2 border border-gray-200">
-          <h3 className="text-center text-base print:text-sm font-bold text-green-700 mb-2 print:mb-1">PERFORMANCE SUMMARY</h3>
+          <h3 className="text-center text-base print:text-sm font-bold text-green-700 mb-2 print:mb-1">
+            PERFORMANCE SUMMARY / प्रदर्शन सारांश
+          </h3>
           <div className="flex justify-center">
             <table className="border-collapse border border-gray-400 w-4/5 text-sm print:text-xs">
               <thead>
@@ -214,7 +234,7 @@ export default function StudentReportCard({ student, examResult }: StudentReport
         <table className="w-full border-collapse border border-gray-400 text-sm print:text-xs">
           <thead>
             <tr className="bg-gray-100">
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold text-left">Class Teacher's Remarks:</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold text-left">Class Teacher's Remarks / कक्षा शिक्षक की टिप्पणी:</th>
             </tr>
           </thead>
           <tbody>
@@ -232,9 +252,9 @@ export default function StudentReportCard({ student, examResult }: StudentReport
         <table className="w-full border-collapse border border-gray-400 text-sm print:text-xs">
           <thead>
             <tr className="bg-gray-100">
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Class Teacher</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Date of Issue</th>
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Principal</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Class Teacher / कक्षा शिक्षक</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Date of Issue / जारी तिथि</th>
+              <th className="border border-gray-400 p-1.5 print:p-1 font-bold">Principal / प्रधानाचार्य</th>
             </tr>
           </thead>
           <tbody>
