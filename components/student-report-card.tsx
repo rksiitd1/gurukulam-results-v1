@@ -51,6 +51,38 @@ export default function StudentReportCard({ student, examResult }: StudentReport
     }
   }
 
+  // Mapping for Devanagari exam type and months
+  const examTypeHindiMap: Record<string, string> = {
+    "jigyasa-anveshan": "जिज्ञासा अन्वेषण",
+    "bodha-manthan": "बोध मंथन",
+    "pragya-siddhi": "प्रज्ञा सिद्धि",
+  }
+  const monthHindiMap: Record<string, string> = {
+    "JANUARY": "जनवरी",
+    "FEBRUARY": "फ़रवरी",
+    "MARCH": "मार्च",
+    "APRIL": "अप्रैल",
+    "MAY": "मई",
+    "JUNE": "जून",
+    "JULY": "जुलाई",
+    "AUGUST": "अगस्त",
+    "SEPTEMBER": "सितंबर",
+    "OCTOBER": "अक्टूबर",
+    "NOVEMBER": "नवंबर",
+    "DECEMBER": "दिसंबर",
+  }
+  function getDevanagariExamTitle() {
+    // Example: "JIGYASAANVESHAN III....JULY 2025"
+    const engTitle = getExamTitle();
+    // Try to extract type, number, month, year
+    const match = engTitle.match(/([A-Z ]+)(?:\s+([IVX]+))?\.*\s*([A-Z]+)\s*(\d{4})?/);
+    if (!match) return "";
+    const [, type, number, month, year] = match;
+    const hindiType = examTypeHindiMap[examResult.examType] || type;
+    const hindiMonth = monthHindiMap[month] || month;
+    return `${hindiType}${number ? ` ${number}` : ""}${month && year ? `....${hindiMonth} ${year}` : ""}`;
+  }
+
   return (
     <div className="max-w-4xl mx-auto p-4 print:p-2 bg-white relative print:max-w-none print:mx-0" style={{fontFamily: 'serif'}}>
       {/* Decorative Border */}
@@ -97,6 +129,7 @@ export default function StudentReportCard({ student, examResult }: StudentReport
       {/* Assessment Title */}
       <div className="bg-orange-100 p-3 print:p-2 mb-4 print:mb-2 text-center">
         <h3 className="text-lg print:text-base font-bold text-blue-900 mb-1 print:mb-0">{getExamTitle()}</h3>
+        <div className="text-base print:text-sm font-bold text-yellow-800 mb-1 print:mb-0 font-serif">{getDevanagariExamTitle()}</div>
         <h4 className="text-base print:text-sm font-bold text-green-700">
           {examResult.examType === "jigyasa-anveshan" ? "Monthly Assessment Report" : 
            examResult.examType === "bodha-manthan" ? "Term-End Assessment Report" : 
