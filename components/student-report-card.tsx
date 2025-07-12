@@ -12,8 +12,8 @@ const colors = {
 
 // Logo component using actual PNG images
 const Logo = ({ type }: { type: "dbg" | "dbm" }) => (
-  <div className="flex flex-col items-center w-20 print:w-16">
-    <div className="w-12 h-12 print:w-10 print:h-10 relative">
+  <div className="flex flex-col items-center w-24 print:w-20">
+    <div className="w-24 h-24 print:w-20 print:h-20 relative">
       <Image
         src={type === "dbg" ? "/DBGlogo.png" : "/DBMlogo.png"}
         alt={type === "dbg" ? "DBG Logo" : "DBM Logo"}
@@ -22,7 +22,6 @@ const Logo = ({ type }: { type: "dbg" | "dbm" }) => (
         priority
       />
     </div>
-    <span className="text-xs print:text-xs text-blue-900 mt-1">{type === "dbg" ? "DBG" : "DBM"}</span>
   </div>
 )
 
