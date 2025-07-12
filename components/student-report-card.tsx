@@ -83,6 +83,23 @@ export default function StudentReportCard({ student, examResult }: StudentReport
     return `${hindiType}${number ? ` ${number}` : ""}${month && year ? `....${hindiMonth} ${year}` : ""}`;
   }
 
+  // Mapping for grade to Hindi
+  const gradeHindiMap: Record<string, string> = {
+    "A1": "ए1",
+    "A2": "ए2",
+    "B1": "बी1",
+    "B2": "बी2",
+    "C1": "सी1",
+    "C2": "सी2",
+    "D": "डी",
+    "E": "ई",
+    "Excellent": "प्रशंसनीय",
+    "Very Good": "अति उत्तम",
+    "Good": "उत्तम",
+    "Average": "औसत",
+    "Needs Improvement": "सुधार आवश्यक",
+  }
+
   return (
     <div className="max-w-4xl mx-auto p-4 print:p-2 bg-white relative print:max-w-none print:mx-0" style={{fontFamily: 'serif'}}>
       {/* Decorative Border */}
@@ -252,7 +269,7 @@ export default function StudentReportCard({ student, examResult }: StudentReport
                   <td className="border border-gray-400 p-1.5 print:p-1 text-center">{examResult.totalMarks}</td>
                   <td className="border border-gray-400 p-1.5 print:p-1 text-center">{examResult.maxMarks}</td>
                   <td className="border border-gray-400 p-1.5 print:p-1 text-center">{examResult.percentage}%</td>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{examResult.grade}</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{examResult.grade} / {gradeHindiMap[examResult.grade] || examResult.grade}</td>
                 </tr>
               </tbody>
             </table>
