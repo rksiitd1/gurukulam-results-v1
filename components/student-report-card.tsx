@@ -71,7 +71,6 @@ export default function StudentReportCard({ student, examResult }: StudentReport
                 DIVYA BIHAR GLOBAL GURUKULAM
                 <span className="block text-yellow-700 text-lg print:text-base font-serif font-semibold">दिव्य बिहार ग्लोबल गुरुकुलम्</span>
               </h1>
-              <h2 className="text-lg print:text-base font-bold text-green-700 mb-1 print:mb-0">(DBG Gurukulam)</h2>
               <p className="text-sm print:text-xs mb-1 print:mb-0">Raghopur, Supaul, Bihar – 852111</p>
               <p className="text-xs print:text-xs mb-1 print:mb-0">Managed by: <span className="font-bold">Divya Bihar Mission</span></p>
               <p className="text-xs print:text-xs italic text-orange-500">Education with Yogic Values</p>
