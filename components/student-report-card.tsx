@@ -1,4 +1,5 @@
 import type { StudentData, ExamResult } from "@/lib/data"
+import Image from "next/image"
 
 // Define the color scheme to match the new design
 const colors = {
@@ -9,19 +10,18 @@ const colors = {
   headerbg: "#FFF8DC",
 }
 
-// Logo component to replace TikZ drawings
-const Logo = ({ type, color }: { type: "dbg" | "dbm"; color: string }) => (
+// Logo component using actual PNG images
+const Logo = ({ type }: { type: "dbg" | "dbm" }) => (
   <div className="flex flex-col items-center w-20 print:w-16">
-    {type === "dbg" ? (
-      <div className="w-12 h-12 print:w-10 print:h-10 rounded-full bg-orange-100 border-2 border-orange-300 flex items-center justify-center relative">
-        <div className="w-4 h-0.5 print:w-3 print:h-0.5 bg-blue-900 absolute"></div>
-        <div className="w-0.5 h-4 print:w-0.5 print:h-3 bg-blue-900 absolute"></div>
-      </div>
-    ) : (
-      <div className="w-12 h-12 print:w-10 print:h-10 rounded-full bg-green-100 border-2 border-green-700 flex items-center justify-center relative">
-        <div className="w-8 h-8 print:w-6 print:h-6 rounded-full border-2 border-orange-500"></div>
-      </div>
-    )}
+    <div className="w-12 h-12 print:w-10 print:h-10 relative">
+      <Image
+        src={type === "dbg" ? "/DBGlogo.png" : "/DBMlogo.png"}
+        alt={type === "dbg" ? "DBG Logo" : "DBM Logo"}
+        fill
+        className="object-contain"
+        priority
+      />
+    </div>
     <span className="text-xs print:text-xs text-blue-900 mt-1">{type === "dbg" ? "DBG" : "DBM"}</span>
   </div>
 )
@@ -62,7 +62,7 @@ export default function StudentReportCard({ student, examResult }: StudentReport
         <div className="bg-yellow-50 p-3 print:p-2 border border-gray-200">
           <div className="flex items-center justify-between">
             {/* Left Logo */}
-            <Logo type="dbg" color={colors.saffron} />
+            <Logo type="dbg" />
             
             {/* Center Content */}
             <div className="text-center flex-1 mx-3 print:mx-2">
@@ -74,7 +74,7 @@ export default function StudentReportCard({ student, examResult }: StudentReport
             </div>
             
             {/* Right Logo */}
-            <Logo type="dbm" color={colors.darkgreen} />
+            <Logo type="dbm" />
           </div>
         </div>
       </div>
