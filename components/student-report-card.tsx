@@ -301,6 +301,10 @@ export default function StudentReportCard({ student, examResult }: StudentReport
       <div className="flex justify-center">
         <div className="w-96 print:w-64 h-0.5 bg-orange-500"></div>
       </div>
+      {/* Upanishad Quote */}
+      <div className="text-center mt-2 mb-2 print:mt-1 print:mb-1">
+        <span className="text-yellow-800 font-serif text-sm print:text-xs">ॐ असतो मा सद्गमय। तमसो मा ज्योतिर्गमय। मृत्योर्माऽमृतं गमय। ॐ शान्ति: शान्ति: शान्ति: ॥</span>
+      </div>
     </div>
   )
 }
