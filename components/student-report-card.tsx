@@ -12,7 +12,7 @@ const colors = {
 
 // Logo component using actual PNG images
 const Logo = ({ type }: { type: "dbg" | "dbm" }) => (
-  <div className="flex flex-col items-center w-24 print:w-20">
+  <div className="flex items-center justify-center w-24 h-24 print:w-20 print:h-20">
     <div className="w-24 h-24 print:w-20 print:h-20 relative">
       <Image
         src={type === "dbg" ? "/DBGlogo.png" : "/DBMlogo.png"}
@@ -59,9 +59,11 @@ export default function StudentReportCard({ student, examResult }: StudentReport
       {/* Header Section */}
       <div className="relative z-10 mb-4 print:mb-2">
         <div className="bg-yellow-50 p-3 print:p-2 border border-gray-200">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center">
             {/* Left Logo */}
-            <Logo type="dbg" />
+            <div className="flex-shrink-0 p-3 print:p-2">
+              <Logo type="dbg" />
+            </div>
             
             {/* Center Content */}
             <div className="text-center flex-1 mx-3 print:mx-2">
@@ -73,7 +75,9 @@ export default function StudentReportCard({ student, examResult }: StudentReport
             </div>
             
             {/* Right Logo */}
-            <Logo type="dbm" />
+            <div className="flex-shrink-0 p-3 print:p-2">
+              <Logo type="dbm" />
+            </div>
           </div>
         </div>
       </div>
