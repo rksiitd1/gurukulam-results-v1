@@ -87,11 +87,10 @@ export default function StudentReportCard({ student, examResult }: StudentReport
       {/* Mantra Section */}
       <div className="bg-yellow-50 border border-yellow-200 rounded-md py-2 px-4 mb-4 print:mb-2 text-center max-w-2xl mx-auto">
         <div className="text-yellow-800 font-semibold leading-snug text-base print:text-sm font-serif">
-          ॐ सह नाववतु ।<br/>
-          सह नौ भुनक्तु ।<br/>
-          सह वीर्यं करवावहै ।<br/>
-          तेजस्वि नावधीतमस्तु मा विद्विषावहै ।।<br/>
-          ॐ शान्तिः शान्तिः शान्तिः ॥
+          ॐ सह नाववतु। सह नौ भुनक्तु।<br/>
+          सह वीर्यं करवावहै।<br/>
+          तेजस्विनावधीतमस्तु मा विद्विषावहै॥<br/>
+          ॐ शांति, शांति, शांतिः
         </div>
       </div>
 
