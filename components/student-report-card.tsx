@@ -228,24 +228,6 @@ export default function StudentReportCard({ student, examResult }: StudentReport
         </div>
       </div>
 
-      {/* Remarks Section */}
-      <div className="mb-4 print:mb-2">
-        <table className="w-full border-collapse border border-gray-400 text-sm print:text-xs">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="border border-gray-400 p-1.5 print:p-1 font-bold text-left">Class Teacher's Remarks / कक्षा शिक्षक की टिप्पणी:</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="border border-gray-400 p-1.5 print:p-1 h-16 print:h-12">
-                {examResult.remarks && <p className="text-sm print:text-xs">{examResult.remarks}</p>}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
       {/* Signature Section */}
       <div className="mb-4 print:mb-2">
         <table className="w-full border-collapse border border-gray-400 text-sm print:text-xs">
