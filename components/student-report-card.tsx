@@ -191,18 +191,18 @@ export default function StudentReportCard({ student, examResult }: StudentReport
             {examResult.academicMarks.map((subject, index) => (
               <tr key={index}>
                 <td className="border border-gray-400 p-1.5 print:p-1">{subject.subject}</td>
-                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{subject.rawMarks}</td>
-                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{subject.total}</td>
-                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{subject.scaledMarks}</td>
-                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{subject.outOf}</td>
+                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(subject.rawMarks).toFixed(1)}</td>
+                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(subject.total).toFixed(1)}</td>
+                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(subject.scaledMarks).toFixed(1)}</td>
+                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(subject.outOf).toFixed(1)}</td>
               </tr>
             ))}
             <tr className="bg-orange-100">
               <td className="border border-gray-400 p-1.5 print:p-1 font-bold">Academic Subtotal</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{academicRawTotal}</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{academicMaxTotal}</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{academicSubtotal}</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">60</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{academicRawTotal.toFixed(1)}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{academicMaxTotal.toFixed(1)}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{academicSubtotal.toFixed(1)}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{Number(60).toFixed(1)}</td>
             </tr>
           </tbody>
         </table>
@@ -231,17 +231,17 @@ export default function StudentReportCard({ student, examResult }: StudentReport
               return (
                 <tr key={rowIndex}>
                   <td className="border border-gray-400 p-1.5 print:p-1">{leftActivity?.activity || ""}</td>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{leftActivity?.marks || ""}</td>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{leftActivity?.outOf || ""}</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{leftActivity?.marks !== undefined ? Number(leftActivity.marks).toFixed(1) : ""}</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{leftActivity?.outOf !== undefined ? Number(leftActivity.outOf).toFixed(1) : ""}</td>
                   <td className="border border-gray-400 p-1.5 print:p-1">{rightActivity?.activity || ""}</td>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{rightActivity?.marks || ""}</td>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{rightActivity?.outOf || ""}</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{rightActivity?.marks !== undefined ? Number(rightActivity.marks).toFixed(1) : ""}</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{rightActivity?.outOf !== undefined ? Number(rightActivity.outOf).toFixed(1) : ""}</td>
                 </tr>
               )
             })}
             <tr className="bg-orange-100">
               <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-center" colSpan={6}>
-                Co-Curricular Subtotal: {coActivitiesSubtotal} / {coActivitiesTotal}
+                Co-Curricular Subtotal: {coActivitiesSubtotal.toFixed(1)} / {coActivitiesTotal.toFixed(1)}
               </td>
             </tr>
           </tbody>
@@ -266,9 +266,9 @@ export default function StudentReportCard({ student, examResult }: StudentReport
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{examResult.totalMarks}</td>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{examResult.maxMarks}</td>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{examResult.percentage}%</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(examResult.totalMarks).toFixed(1)}</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(examResult.maxMarks).toFixed(1)}</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(examResult.percentage).toFixed(1)}%</td>
                   <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{examResult.grade} / {gradeHindiMap[examResult.grade] || examResult.grade}</td>
                 </tr>
               </tbody>
