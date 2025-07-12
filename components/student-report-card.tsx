@@ -100,6 +100,11 @@ export default function StudentReportCard({ student, examResult }: StudentReport
     "Needs Improvement": "सुधार आवश्यक",
   }
 
+  // Helper to format numbers: integer if whole, else one decimal
+  function formatMark(val: number) {
+    return Number.isInteger(val) ? val : val.toFixed(1);
+  }
+
   return (
     <div className="max-w-4xl mx-auto p-4 print:p-2 bg-white relative print:max-w-none print:mx-0" style={{fontFamily: 'serif'}}>
       {/* Decorative Border */}
@@ -191,18 +196,18 @@ export default function StudentReportCard({ student, examResult }: StudentReport
             {examResult.academicMarks.map((subject, index) => (
               <tr key={index}>
                 <td className="border border-gray-400 p-1.5 print:p-1">{subject.subject}</td>
-                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(subject.rawMarks).toFixed(1)}</td>
-                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(subject.total).toFixed(1)}</td>
+                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{formatMark(Number(subject.rawMarks))}</td>
+                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{formatMark(Number(subject.total))}</td>
                 <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(subject.scaledMarks).toFixed(1)}</td>
-                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(subject.outOf).toFixed(1)}</td>
+                <td className="border border-gray-400 p-1.5 print:p-1 text-center">{formatMark(Number(subject.outOf))}</td>
               </tr>
             ))}
             <tr className="bg-orange-100">
               <td className="border border-gray-400 p-1.5 print:p-1 font-bold">Academic Subtotal</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{academicRawTotal.toFixed(1)}</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{academicMaxTotal.toFixed(1)}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{formatMark(academicRawTotal)}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{formatMark(academicMaxTotal)}</td>
               <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{academicSubtotal.toFixed(1)}</td>
-              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{Number(60).toFixed(1)}</td>
+              <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{formatMark(60)}</td>
             </tr>
           </tbody>
         </table>
@@ -241,7 +246,7 @@ export default function StudentReportCard({ student, examResult }: StudentReport
             })}
             <tr className="bg-orange-100">
               <td className="border border-gray-400 p-1.5 print:p-1 font-bold text-center" colSpan={6}>
-                Co-Curricular Subtotal: {coActivitiesSubtotal.toFixed(1)} / {coActivitiesTotal.toFixed(1)}
+                Co-Curricular Subtotal: {coActivitiesSubtotal.toFixed(1)} / {formatMark(coActivitiesTotal)}
               </td>
             </tr>
           </tbody>
@@ -266,8 +271,8 @@ export default function StudentReportCard({ student, examResult }: StudentReport
               </thead>
               <tbody>
                 <tr>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(examResult.totalMarks).toFixed(1)}</td>
-                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(examResult.maxMarks).toFixed(1)}</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{formatMark(Number(examResult.totalMarks))}</td>
+                  <td className="border border-gray-400 p-1.5 print:p-1 text-center">{formatMark(Number(examResult.maxMarks))}</td>
                   <td className="border border-gray-400 p-1.5 print:p-1 text-center">{Number(examResult.percentage).toFixed(1)}%</td>
                   <td className="border border-gray-400 p-1.5 print:p-1 text-center font-bold">{examResult.grade} / {gradeHindiMap[examResult.grade] || examResult.grade}</td>
                 </tr>
