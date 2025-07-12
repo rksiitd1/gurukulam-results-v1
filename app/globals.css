@@ -84,3 +84,62 @@
     size: A4;
   }
 }
+
+/* Custom animations for enhanced home page */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 153, 51, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 153, 51, 0.6);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Gradient text utilities */
+.gradient-text-orange {
+  background: linear-gradient(135deg, #FF9933, #FF6B35);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-green {
+  background: linear-gradient(135deg, #138808, #22C55E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-blue {
+  background: linear-gradient(135deg, #00008B, #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

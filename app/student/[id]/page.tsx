@@ -14,13 +14,14 @@ const colors = {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export default function StudentPage({ params }: PageProps) {
-  const student = getStudentById(params.id)
+export default async function StudentPage({ params }: PageProps) {
+  const resolvedParams = await params
+  const student = getStudentById(resolvedParams.id)
 
   if (!student) {
     notFound()

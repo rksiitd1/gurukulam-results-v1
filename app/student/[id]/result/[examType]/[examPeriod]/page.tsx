@@ -6,19 +6,43 @@ import { getStudentById, getExamResult } from "@/lib/data"
 import StudentReportCard from "@/components/student-report-card"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Download, Printer } from "lucide-react"
+import { useState, useEffect } from "react"
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string
     examType: string
     examPeriod: string
-  }
+  }>
 }
 
 export default function ResultPage({ params }: PageProps) {
-  const student = getStudentById(params.id)
-  const examPeriod = decodeURIComponent(params.examPeriod)
-  const examResult = getExamResult(params.id, params.examType, examPeriod)
+  const [resolvedParams, setResolvedParams] = useState<{
+    id: string
+    examType: string
+    examPeriod: string
+  } | null>(null)
+
+  useEffect(() => {
+    const resolveParams = async () => {
+      const resolved = await params
+      setResolvedParams(resolved)
+    }
+    resolveParams()
+  }, [params])
+
+  if (!resolvedParams) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+      </div>
+    )
+  }
+
+  const { id, examType, examPeriod: rawExamPeriod } = resolvedParams
+  const student = getStudentById(id)
+  const examPeriod = decodeURIComponent(rawExamPeriod)
+  const examResult = getExamResult(id, examType, examPeriod)
 
   if (!student || !examResult) {
     notFound()

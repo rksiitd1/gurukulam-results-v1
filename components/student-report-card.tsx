@@ -108,28 +108,30 @@ export default function StudentReportCard({ student, examResult }: StudentReport
       {/* Student Information */}
       <div className="mb-6">
         <table className="w-full border-collapse border border-gray-400">
-          <tr style={{ backgroundColor: colors.lightgray }}>
-            <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
-              Student Name: {student.name}
-            </td>
-            <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
-              Class: {student.class}
-            </td>
-            <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
-              Roll No: {student.rollNo}
-            </td>
-            <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
-              Period: {examResult.examPeriod}
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }} colSpan={2}>
-              Father's Name: {student.fatherName}
-            </td>
-            <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }} colSpan={2}>
-              Mother's Name: {student.motherName}
-            </td>
-          </tr>
+          <tbody>
+            <tr style={{ backgroundColor: colors.lightgray }}>
+              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
+                Student Name: {student.name}
+              </td>
+              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
+                Class: {student.class}
+              </td>
+              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
+                Roll No: {student.rollNo}
+              </td>
+              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }}>
+                Period: {examResult.examPeriod}
+              </td>
+            </tr>
+            <tr>
+              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }} colSpan={2}>
+                Father's Name: {student.fatherName}
+              </td>
+              <td className="border border-gray-400 p-2 font-bold" style={{ color: colors.navy }} colSpan={2}>
+                Mother's Name: {student.motherName}
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -19,11 +19,11 @@ const colors = {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     academicYear: string
     examType: string
     examPeriod: string
-  }
+  }>
 }
 
 export default function StudentSearchPage({ params }: PageProps) {
@@ -33,11 +33,33 @@ export default function StudentSearchPage({ params }: PageProps) {
   const [studentName, setStudentName] = useState("")
   const [nameError, setNameError] = useState("")
   const [isVerifying, setIsVerifying] = useState(false)
+  const [resolvedParams, setResolvedParams] = useState<{
+    academicYear: string
+    examType: string
+    examPeriod: string
+  } | null>(null)
 
-  const examPeriod = decodeURIComponent(params.examPeriod)
+  useEffect(() => {
+    const resolveParams = async () => {
+      const resolved = await params
+      setResolvedParams(resolved)
+    }
+    resolveParams()
+  }, [params])
+
+  if (!resolvedParams) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-yellow-50 to-green-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+      </div>
+    )
+  }
+
+  const { academicYear, examType, examPeriod: rawExamPeriod } = resolvedParams
+  const examPeriod = decodeURIComponent(rawExamPeriod)
 
   const getExamTitle = () => {
-    switch (params.examType) {
+    switch (examType) {
       case "jigyasa-anveshan":
         return `Jigyāsa Anveshan ${examPeriod}`
       case "bodha-manthan":
@@ -68,7 +90,7 @@ export default function StudentSearchPage({ params }: PageProps) {
       if (student) {
         // Redirect to result page
         router.push(
-          `/results/${params.academicYear}/${params.examType}/${encodeURIComponent(examPeriod)}/student/${student.id}`,
+          `/results/${academicYear}/${examType}/${encodeURIComponent(examPeriod)}/student/${student.id}`,
         )
       } else {
         setNameError("Student not found. Please check the name, class, and roll number.")
@@ -98,7 +120,7 @@ export default function StudentSearchPage({ params }: PageProps) {
                 {getExamTitle()}
               </h1>
               <p className="text-xl mb-2" style={{ color: colors.darkgreen }}>
-                Academic Year: {params.academicYear}
+                Academic Year: {academicYear}
               </p>
               <p className="text-lg text-gray-600">Enter student details to view result</p>
             </div>
