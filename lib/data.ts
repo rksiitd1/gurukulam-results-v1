@@ -529,6 +529,72 @@ export const examResults: ExamResult[] = [
   },
 ]
 
+// Question paper data structure (sample)
+export const questionPapers = {
+  "12": {
+    Physics: {
+      chapters: [
+        {
+          name: "Electrostatics",
+          sets: [
+            {
+              set: 1,
+              questions: [
+                {
+                  number: 1,
+                  text: "Define electric field. State and explain Gauss's law.",
+                  marks: 5
+                },
+                {
+                  number: 2,
+                  text: "A point charge of 2μC is placed at the origin. Calculate the electric field at a point 10cm away.",
+                  marks: 3
+                },
+                {
+                  number: 3,
+                  text: "Explain the concept of electric flux with a diagram.",
+                  marks: 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "10": {
+    Math: {
+      chapters: [
+        {
+          name: "Real Numbers",
+          sets: [
+            {
+              set: 1,
+              questions: [
+                {
+                  number: 1,
+                  text: "State Euclid's division lemma. Use it to find the HCF of 56 and 72.",
+                  marks: 4
+                },
+                {
+                  number: 2,
+                  text: "Prove that \u221A2 is an irrational number.",
+                  marks: 3
+                },
+                {
+                  number: 3,
+                  text: "If the HCF of 65 and 117 is expressible in the form 65m - 117n, find the value of m and n.",
+                  marks: 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+
 export const examTypes = {
   "jigyasa-anveshan": "Jigyāsa Anveshan (Monthly)",
   "bodha-manthan": "Bodha Manthan (Term-End)",
