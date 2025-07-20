@@ -1,73 +1,58 @@
-"use client"
-import { useState } from "react"
+import Link from "next/link"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { questionPapers } from "@/lib/data"
-import { useRouter } from "next/navigation"
+import Header from "@/components/layout/header"
+import Footer from "@/components/layout/footer"
 
-export default function QuestionPaperSelection() {
-  const router = useRouter()
-  const [className, setClassName] = useState("")
-  const [subject, setSubject] = useState("")
-  const [chapter, setChapter] = useState("")
-  const [setNum, setSetNum] = useState("")
-
-  // Get available classes from data
-  const classOptions = Object.keys(questionPapers)
-  // Get subjects for selected class
-  const subjectOptions = className ? Object.keys((questionPapers as any)[className]) : []
-  // Get chapters for selected subject
-  const chapterOptions = className && subject ? ((questionPapers as any)[className][subject].chapters.map((c: any) => c.name)) : []
-  // Get sets for selected chapter
-  const setOptions = className && subject && chapter ? ((questionPapers as any)[className][subject].chapters.find((c: any) => c.name === chapter)?.sets.map((s: any) => s.set)) : []
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (className && subject && chapter && setNum) {
-      router.push(`/question-paper/${className}/${subject}/${encodeURIComponent(chapter)}/${setNum}`)
-    }
-  }
-
+export default function QuestionPaperHome() {
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded shadow">
-      <h2 className="text-xl font-bold mb-4 text-center">Select Question Paper</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block font-semibold mb-1">Class</label>
-          <select value={className} onChange={e => { setClassName(e.target.value); setSubject(""); setChapter(""); setSetNum("") }} className="w-full border p-2 rounded">
-            <option value="">Select class</option>
-            {classOptions.map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+      <Header title="QUESTION PAPERS" subtitle="Select Class and Subject" showNavigation={true} />
+
+      <div className="max-w-6xl mx-auto p-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {Object.entries(questionPapers).map(([className, subjects]) =>
+            Object.entries(subjects).map(([subject, subjectData]) => (
+              <Card key={`${className}-${subject}`} className="shadow-lg hover:shadow-xl transition-shadow">
+                <CardHeader className="bg-gradient-to-r from-blue-500/10 to-green-500/10">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-xl font-bold text-gray-900">Class {className}</CardTitle>
+                    <Badge className="bg-blue-100 text-blue-700">{subject}</Badge>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    <p className="text-gray-600">Available Chapters: {subjectData.chapters.length}</p>
+                    <div className="space-y-2">
+                      {subjectData.chapters.map((chapter: any) => (
+                        <div key={chapter.name} className="border-l-4 border-blue-500 pl-3">
+                          <h4 className="font-semibold text-gray-800">{chapter.name}</h4>
+                          <div className="flex flex-wrap gap-2 mt-2">
+                            {chapter.sets.map((set: any) => (
+                              <Link
+                                key={set.set}
+                                href={`/question-paper/${className}/${subject}/${encodeURIComponent(chapter.name)}/${set.set}`}
+                                className="inline-block"
+                              >
+                                <Badge variant="outline" className="hover:bg-blue-50 cursor-pointer transition-colors">
+                                  Set {set.set}
+                                </Badge>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            )),
+          )}
         </div>
-        {className && (
-          <div>
-            <label className="block font-semibold mb-1">Subject</label>
-            <select value={subject} onChange={e => { setSubject(e.target.value); setChapter(""); setSetNum("") }} className="w-full border p-2 rounded">
-              <option value="">Select subject</option>
-              {subjectOptions.map(s => <option key={s} value={s}>{s}</option>)}
-            </select>
-          </div>
-        )}
-        {subject && (
-          <div>
-            <label className="block font-semibold mb-1">Chapter</label>
-            <select value={chapter} onChange={e => { setChapter(e.target.value); setSetNum("") }} className="w-full border p-2 rounded">
-              <option value="">Select chapter</option>
-              {chapterOptions.map((ch: string) => <option key={ch} value={ch}>{ch}</option>)}
-            </select>
-          </div>
-        )}
-        {chapter && (
-          <div>
-            <label className="block font-semibold mb-1">Set</label>
-            <select value={setNum} onChange={e => setSetNum(e.target.value)} className="w-full border p-2 rounded">
-              <option value="">Select set</option>
-              {setOptions.map((setVal: any) => <option key={setVal} value={setVal}>{setVal}</option>)}
-            </select>
-          </div>
-        )}
-        <button type="submit" className="w-full bg-blue-700 text-white py-2 rounded font-bold mt-4" disabled={!(className && subject && chapter && setNum)}>
-          View Question Paper
-        </button>
-      </form>
+      </div>
+
+      <Footer />
     </div>
   )
-} 
+}

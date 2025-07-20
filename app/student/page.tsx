@@ -32,4 +32,4 @@ export default function StudentPortalPage() {
       </div>
     </div>
   )
-} 
+}

@@ -1,58 +1,96 @@
 "use client"
 
-import { useCallback } from "react"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Printer, Download, Share } from "lucide-react"
+import { ArrowLeft, Share2, Printer, Download } from "lucide-react"
+import { useRouter } from "next/navigation"
 
-interface Props {
+interface ResultActionsProps {
   backUrl: string
   studentName: string
   examLabel: string
 }
 
-export default function ResultActions({ backUrl, studentName, examLabel }: Props) {
-  const handlePrint = useCallback(() => {
-    window.print()
-  }, [])
+export default function ResultActions({ backUrl, studentName, examLabel }: ResultActionsProps) {
+  const router = useRouter()
 
-  const handleShare = useCallback(async () => {
+  const handleBack = () => {
+    router.push(backUrl)
+  }
+
+  const handleShare = async () => {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `${studentName} – ${examLabel} Result`,
+          title: `${studentName} - ${examLabel}`,
+          text: `Question Paper: ${studentName} - ${examLabel}`,
           url: window.location.href,
         })
-        return
-      } catch {}
+      } catch (error) {
+        console.log("Error sharing:", error)
+      }
+    } else {
+      // Fallback: copy to clipboard
+      navigator.clipboard.writeText(window.location.href)
+      alert("Link copied to clipboard!")
     }
-    await navigator.clipboard.writeText(window.location.href)
-    alert("Result link copied to clipboard!")
-  }, [studentName, examLabel])
+  }
+
+  const handlePrint = () => {
+    window.print()
+  }
+
+  const handleDownloadPDF = () => {
+    window.print()
+  }
 
   return (
-    <div className="print:hidden p-4 bg-gray-50 border-b">
-      <div className="max-w-4xl mx-auto flex justify-between items-center">
-        <Link href={backUrl}>
-          <Button variant="outline">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Search
-          </Button>
-        </Link>
+    <div className="print:hidden bg-white border-b border-gray-200 sticky top-0 z-50">
+      <div className="max-w-4xl mx-auto px-4 py-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleBack}
+              className="flex items-center space-x-2 bg-transparent"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span>Back</span>
+            </Button>
+            <div>
+              <h1 className="text-lg font-semibold text-gray-900">{studentName}</h1>
+              <p className="text-sm text-gray-600">{examLabel}</p>
+            </div>
+          </div>
 
-        <div className="flex gap-2">
-          <Button onClick={handleShare} variant="outline">
-            <Share className="h-4 w-4 mr-2" />
-            Share
-          </Button>
-          <Button onClick={handlePrint} variant="outline">
-            <Printer className="h-4 w-4 mr-2" />
-            Print
-          </Button>
-          <Button onClick={handlePrint}>
-            <Download className="h-4 w-4 mr-2" />
-            PDF
-          </Button>
+          <div className="flex items-center space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleShare}
+              className="flex items-center space-x-2 bg-transparent"
+            >
+              <Share2 className="h-4 w-4" />
+              <span>Share</span>
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handlePrint}
+              className="flex items-center space-x-2 bg-transparent"
+            >
+              <Printer className="h-4 w-4" />
+              <span>Print</span>
+            </Button>
+            <Button
+              size="sm"
+              onClick={handleDownloadPDF}
+              className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700"
+            >
+              <Download className="h-4 w-4" />
+              <span>PDF</span>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
