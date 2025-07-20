@@ -3,15 +3,8 @@ import { useState } from "react"
 import { questionPapers } from "@/lib/data"
 import { useRouter } from "next/navigation"
 
-const types = [
-  { value: "chapter", label: "Chapter-wise" },
-  // { value: "third", label: "1/3 Syllabus" },
-  // { value: "full", label: "Full Syllabus" },
-]
-
 export default function QuestionPaperSelection() {
   const router = useRouter()
-  const [type, setType] = useState("")
   const [className, setClassName] = useState("")
   const [subject, setSubject] = useState("")
   const [chapter, setChapter] = useState("")
@@ -28,7 +21,7 @@ export default function QuestionPaperSelection() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (type && className && subject && chapter && setNum) {
+    if (className && subject && chapter && setNum) {
       router.push(`/question-paper/${className}/${subject}/${encodeURIComponent(chapter)}/${setNum}`)
     }
   }
@@ -37,13 +30,6 @@ export default function QuestionPaperSelection() {
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded shadow">
       <h2 className="text-xl font-bold mb-4 text-center">Select Question Paper</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block font-semibold mb-1">Type</label>
-          <select value={type} onChange={e => setType(e.target.value)} className="w-full border p-2 rounded">
-            <option value="">Select type</option>
-            {types.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
-          </select>
-        </div>
         <div>
           <label className="block font-semibold mb-1">Class</label>
           <select value={className} onChange={e => { setClassName(e.target.value); setSubject(""); setChapter(""); setSetNum("") }} className="w-full border p-2 rounded">
@@ -78,7 +64,7 @@ export default function QuestionPaperSelection() {
             </select>
           </div>
         )}
-        <button type="submit" className="w-full bg-blue-700 text-white py-2 rounded font-bold mt-4" disabled={!(type && className && subject && chapter && setNum)}>
+        <button type="submit" className="w-full bg-blue-700 text-white py-2 rounded font-bold mt-4" disabled={!(className && subject && chapter && setNum)}>
           View Question Paper
         </button>
       </form>
