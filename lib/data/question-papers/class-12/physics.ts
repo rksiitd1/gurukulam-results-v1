@@ -1,6 +1,4 @@
-import type { Chapter } from "../class-10/math"
-
-export const class12Physics: Chapter[] = [
+export const class12Physics = [
   {
     name: "Electrostatics",
     sets: [
@@ -9,6 +7,17 @@ export const class12Physics: Chapter[] = [
         objectiveQuestions: [
           {
             number: 1,
+            text: "Coulomb's law is valid for:",
+            options: {
+              a: "Point charges only",
+              b: "Point charges at rest",
+              c: "Moving charges",
+              d: "All charges",
+            },
+            marks: 1,
+          },
+          {
+            number: 2,
             text: "The SI unit of electric field is:",
             options: {
               a: "N/C",
@@ -19,19 +28,8 @@ export const class12Physics: Chapter[] = [
             marks: 1,
           },
           {
-            number: 2,
-            text: "Coulomb's law is valid for:",
-            options: {
-              a: "Point charges only",
-              b: "Point charges in vacuum only",
-              c: "All types of charges",
-              d: "Moving charges only",
-            },
-            marks: 1,
-          },
-          {
             number: 3,
-            text: "The electric field inside a conductor is:",
+            text: "Electric field inside a conductor is:",
             options: {
               a: "Maximum",
               b: "Minimum",
@@ -42,17 +40,6 @@ export const class12Physics: Chapter[] = [
           },
           {
             number: 4,
-            text: "Electric potential is a:",
-            options: {
-              a: "Vector quantity",
-              b: "Scalar quantity",
-              c: "Tensor quantity",
-              d: "Dimensionless quantity",
-            },
-            marks: 1,
-          },
-          {
-            number: 5,
             text: "The work done in moving a charge in an equipotential surface is:",
             options: {
               a: "Maximum",
@@ -63,128 +50,18 @@ export const class12Physics: Chapter[] = [
             marks: 1,
           },
           {
+            number: 5,
+            text: "Electric potential is a:",
+            options: {
+              a: "Vector quantity",
+              b: "Scalar quantity",
+              c: "Neither vector nor scalar",
+              d: "Both vector and scalar",
+            },
+            marks: 1,
+          },
+          {
             number: 6,
-            text: "Gauss's law is applicable for:",
-            options: {
-              a: "Symmetric charge distributions only",
-              b: "Any charge distribution",
-              c: "Point charges only",
-              d: "Continuous charge distributions only",
-            },
-            marks: 1,
-          },
-          {
-            number: 7,
-            text: "The electric field due to an electric dipole at a point on its axis varies as:",
-            options: {
-              a: "1/r",
-              b: "1/r²",
-              c: "1/r³",
-              d: "1/r⁴",
-            },
-            marks: 1,
-          },
-          {
-            number: 8,
-            text: "The capacitance of a parallel plate capacitor depends on:",
-            options: {
-              a: "Charge on plates",
-              b: "Potential difference",
-              c: "Area of plates",
-              d: "All of the above",
-            },
-            marks: 1,
-          },
-          {
-            number: 9,
-            text: "The dielectric constant of vacuum is:",
-            options: {
-              a: "0",
-              b: "1",
-              c: "∞",
-              d: "8.85 × 10⁻¹²",
-            },
-            marks: 1,
-          },
-          {
-            number: 10,
-            text: "When a dielectric is inserted between the plates of a capacitor, its capacitance:",
-            options: {
-              a: "Increases",
-              b: "Decreases",
-              c: "Remains same",
-              d: "Becomes zero",
-            },
-            marks: 1,
-          },
-          {
-            number: 11,
-            text: "The electric field lines:",
-            options: {
-              a: "Can intersect",
-              b: "Cannot intersect",
-              c: "Are always straight",
-              d: "Are always curved",
-            },
-            marks: 1,
-          },
-          {
-            number: 12,
-            text: "The potential energy of a system of charges is:",
-            options: {
-              a: "Always positive",
-              b: "Always negative",
-              c: "Can be positive or negative",
-              d: "Always zero",
-            },
-            marks: 1,
-          },
-          {
-            number: 13,
-            text: "The electric flux through a closed surface depends on:",
-            options: {
-              a: "Charge outside the surface",
-              b: "Charge inside the surface",
-              c: "Total charge in universe",
-              d: "Shape of the surface",
-            },
-            marks: 1,
-          },
-          {
-            number: 14,
-            text: "The force between two point charges is F. If the distance between them is doubled, the force becomes:",
-            options: {
-              a: "F/2",
-              b: "F/4",
-              c: "2F",
-              d: "4F",
-            },
-            marks: 1,
-          },
-          {
-            number: 15,
-            text: "The electric field at the center of a uniformly charged ring is:",
-            options: {
-              a: "Maximum",
-              b: "Minimum",
-              c: "Zero",
-              d: "Infinite",
-            },
-            marks: 1,
-          },
-          {
-            number: 16,
-            text: "The unit of electric dipole moment is:",
-            options: {
-              a: "C⋅m",
-              b: "C/m",
-              c: "C⋅m²",
-              d: "C/m²",
-            },
-            marks: 1,
-          },
-          {
-            number: 17,
             text: "The electric field due to a point charge varies as:",
             options: {
               a: "1/r",
@@ -195,7 +72,106 @@ export const class12Physics: Chapter[] = [
             marks: 1,
           },
           {
-            number: 18,
+            number: 7,
+            text: "Gauss's law is useful for calculating electric field when:",
+            options: {
+              a: "Charge distribution has symmetry",
+              b: "Charge distribution is random",
+              c: "Charges are moving",
+              d: "Charges are at rest",
+            },
+            marks: 1,
+          },
+          {
+            number: 8,
+            text: "The capacitance of a parallel plate capacitor depends on:",
+            options: {
+              a: "Charge on plates",
+              b: "Potential difference",
+              c: "Area of plates and distance between them",
+              d: "Material of plates only",
+            },
+            marks: 1,
+          },
+          {
+            number: 9,
+            text: "When a dielectric is inserted between the plates of a capacitor:",
+            options: {
+              a: "Capacitance decreases",
+              b: "Capacitance increases",
+              c: "Capacitance remains same",
+              d: "Capacitance becomes zero",
+            },
+            marks: 1,
+          },
+          {
+            number: 10,
+            text: "The electric field lines:",
+            options: {
+              a: "Can intersect each other",
+              b: "Never intersect each other",
+              c: "Are always straight",
+              d: "Are always curved",
+            },
+            marks: 1,
+          },
+          {
+            number: 11,
+            text: "The electric dipole moment is:",
+            options: {
+              a: "q × d",
+              b: "q / d",
+              c: "q + d",
+              d: "q - d",
+            },
+            marks: 1,
+          },
+          {
+            number: 12,
+            text: "The electric field at the center of a uniformly charged ring is:",
+            options: {
+              a: "Maximum",
+              b: "Minimum",
+              c: "Zero",
+              d: "Infinite",
+            },
+            marks: 1,
+          },
+          {
+            number: 13,
+            text: "The unit of electric flux is:",
+            options: {
+              a: "N⋅m²/C",
+              b: "N⋅m/C²",
+              c: "N/C⋅m",
+              d: "C⋅m²/N",
+            },
+            marks: 1,
+          },
+          {
+            number: 14,
+            text: "Two charges +q and -q separated by distance 2a form:",
+            options: {
+              a: "Electric monopole",
+              b: "Electric dipole",
+              c: "Electric quadrupole",
+              d: "Electric octupole",
+            },
+            marks: 1,
+          },
+          {
+            number: 15,
+            text: "The electric potential at infinity is taken as:",
+            options: {
+              a: "Maximum",
+              b: "Minimum",
+              c: "Zero",
+              d: "Unity",
+            },
+            marks: 1,
+          },
+          {
+            number: 16,
             text: "The energy stored in a capacitor is:",
             options: {
               a: "½CV²",
@@ -206,79 +182,101 @@ export const class12Physics: Chapter[] = [
             marks: 1,
           },
           {
-            number: 19,
-            text: "The electric field inside a hollow charged sphere is:",
+            number: 17,
+            text: "In series combination of capacitors:",
             options: {
-              a: "Maximum at center",
-              b: "Minimum at center",
-              c: "Zero everywhere",
-              d: "Infinite everywhere",
+              a: "Voltage is same across all",
+              b: "Charge is same on all",
+              c: "Capacitance is same for all",
+              d: "Energy is same in all",
+            },
+            marks: 1,
+          },
+          {
+            number: 18,
+            text: "The electric field due to an infinite plane sheet of charge is:",
+            options: {
+              a: "σ/ε₀",
+              b: "σ/2ε₀",
+              c: "2σ/ε₀",
+              d: "σ/4πε₀",
+            },
+            marks: 1,
+          },
+          {
+            number: 19,
+            text: "The torque on an electric dipole in uniform electric field is:",
+            options: {
+              a: "pE sin θ",
+              b: "pE cos θ",
+              c: "pE tan θ",
+              d: "pE",
             },
             marks: 1,
           },
           {
             number: 20,
-            text: "Two capacitors of capacitance C₁ and C₂ are connected in series. The equivalent capacitance is:",
+            text: "The electric field inside a spherical conductor is:",
             options: {
-              a: "C₁ + C₂",
-              b: "C₁C₂/(C₁ + C₂)",
-              c: "(C₁ + C₂)/C₁C₂",
-              d: "C₁ - C₂",
+              a: "Uniform",
+              b: "Non-uniform",
+              c: "Zero",
+              d: "Maximum at center",
             },
             marks: 1,
           },
           {
             number: 21,
-            text: "The electric potential at infinity is taken as:",
+            text: "The dimension of electric field is:",
             options: {
-              a: "Zero",
-              b: "Infinite",
-              c: "Unity",
-              d: "Maximum",
+              a: "[MLT⁻³A⁻¹]",
+              b: "[MLT⁻²A⁻¹]",
+              c: "[ML²T⁻³A⁻¹]",
+              d: "[MLT⁻¹A⁻¹]",
             },
             marks: 1,
           },
           {
             number: 22,
-            text: "The electric field is conservative, which means:",
+            text: "Van de Graaff generator works on the principle of:",
             options: {
-              a: "Work done is path independent",
-              b: "Work done is path dependent",
-              c: "No work is done",
-              d: "Infinite work is done",
+              a: "Electromagnetic induction",
+              b: "Electrostatic induction",
+              c: "Corona discharge",
+              d: "Photoelectric effect",
             },
             marks: 1,
           },
           {
             number: 23,
-            text: "The surface charge density has units:",
+            text: "The electric field at a point on the axis of a dipole varies as:",
             options: {
-              a: "C/m",
-              b: "C/m²",
-              c: "C/m³",
-              d: "C⋅m",
+              a: "1/r",
+              b: "1/r²",
+              c: "1/r³",
+              d: "1/r⁴",
             },
             marks: 1,
           },
           {
             number: 24,
-            text: "The electric field just outside a charged conductor is:",
+            text: "The capacitance of an isolated sphere of radius R is:",
             options: {
-              a: "σ/ε₀",
-              b: "σ/2ε₀",
-              c: "2σ/ε₀",
-              d: "Zero",
+              a: "4πε₀R",
+              b: "4πε₀/R",
+              c: "πε₀R",
+              d: "ε₀/4πR",
             },
             marks: 1,
           },
           {
             number: 25,
-            text: "The principle of superposition is applicable to:",
+            text: "Lightning conductor works on the principle of:",
             options: {
-              a: "Electric field only",
-              b: "Electric potential only",
-              c: "Both electric field and potential",
-              d: "Neither field nor potential",
+              a: "Electrostatic shielding",
+              b: "Action of points",
+              c: "Electromagnetic induction",
+              d: "Photoelectric effect",
             },
             marks: 1,
           },
@@ -286,22 +284,22 @@ export const class12Physics: Chapter[] = [
         shortAnswerQuestions: [
           {
             number: 26,
-            text: "State Coulomb's law. Write its mathematical expression and define the terms involved.",
+            text: "State Coulomb's law in electrostatics. Write its mathematical form.",
             marks: 2,
           },
           {
             number: 27,
-            text: "Define electric field. Find the electric field at a point due to a point charge Q.",
+            text: "Define electric field intensity. Write its unit and dimensions.",
             marks: 2,
           },
           {
             number: 28,
-            text: "State and explain Gauss's law. Write its mathematical form.",
+            text: "What is electric flux? State Gauss's law.",
             marks: 2,
           },
           {
             number: 29,
-            text: "Define electric potential. How is it related to electric field?",
+            text: "Define electric potential and potential difference.",
             marks: 2,
           },
           {
@@ -311,36 +309,36 @@ export const class12Physics: Chapter[] = [
           },
           {
             number: 31,
-            text: "Two point charges +4μC and +1μC are placed 10 cm apart. Find the position where electric field is zero.",
+            text: "Define capacitance of a capacitor. Write its unit.",
             marks: 2,
           },
           {
             number: 32,
-            text: "Define capacitance. Derive expression for capacitance of parallel plate capacitor.",
+            text: "Derive the expression for capacitance of a parallel plate capacitor.",
             marks: 2,
           },
           {
             number: 33,
-            text: "What is dielectric? How does it affect the capacitance of a capacitor?",
+            text: "What is dielectric constant? How does it affect capacitance?",
             marks: 2,
           },
           {
             number: 34,
-            text: "Find the equivalent capacitance when three capacitors of capacitance C each are connected in parallel.",
+            text: "Explain the concept of equipotential surfaces.",
             marks: 2,
           },
           {
             number: 35,
-            text: "Calculate the work done in bringing a charge of 2μC from infinity to a point where potential is 100V.",
+            text: "What is electrostatic shielding? Give one application.",
             marks: 2,
           },
         ],
         longAnswerQuestions: [
           {
             number: 36,
-            text: "Derive an expression for electric field due to an electric dipole at a point on its axial line. Hence show that for large distances, E ∝ 1/r³.",
+            text: "Derive an expression for electric field due to an electric dipole at a point on its axial line. Also find the electric field at a point on the equatorial line.",
             orQuestion:
-              "Using Gauss's law, derive an expression for electric field due to a uniformly charged infinite plane sheet. Also find the field due to two parallel infinite sheets with equal and opposite charge densities.",
+              "Using Gauss's law, derive an expression for electric field due to: (i) an infinite plane sheet of charge (ii) a uniformly charged spherical shell at a point outside the shell.",
             marks: 5,
           },
         ],

@@ -16,18 +16,40 @@ export default function QuestionPaperPage({ params }: PageProps) {
   const { class: className, subject, chapter, set } = params
   const setNumber = Number.parseInt(set)
 
+  console.log("Page params:", { className, subject, chapter, set, setNumber })
+
   // Validate that the question paper exists
   const classData = (questionPapers as any)[className]
-  if (!classData) return notFound()
+  if (!classData) {
+    console.log("Class not found:", className)
+    return notFound()
+  }
 
   const subjectData = classData[subject]
-  if (!subjectData) return notFound()
+  if (!subjectData) {
+    console.log("Subject not found:", subject)
+    return notFound()
+  }
 
   const chapterData = subjectData.chapters.find((c: any) => c.name === decodeURIComponent(chapter))
-  if (!chapterData) return notFound()
+  if (!chapterData) {
+    console.log("Chapter not found:", decodeURIComponent(chapter))
+    console.log(
+      "Available chapters:",
+      subjectData.chapters.map((c: any) => c.name),
+    )
+    return notFound()
+  }
 
   const setData = chapterData.sets.find((s: any) => s.set === setNumber)
-  if (!setData) return notFound()
+  if (!setData) {
+    console.log("Set not found:", setNumber)
+    console.log(
+      "Available sets:",
+      chapterData.sets.map((s: any) => s.set),
+    )
+    return notFound()
+  }
 
   const backUrl = `/question-paper`
   const paperTitle = `Class ${className} ${subject}`
@@ -64,5 +86,6 @@ export async function generateStaticParams() {
     })
   })
 
+  console.log("Generated static params:", params)
   return params
 }
