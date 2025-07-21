@@ -25,13 +25,20 @@ export default function QuestionPaperPage({ params }: PageProps) {
     return notFound()
   }
 
-  const subjectData = classData[subject]
-  if (!subjectData) {
+  // Case-insensitive and space-insensitive subject and chapter matching
+  const normalizedSubject = Object.keys(classData).find(
+    key => key.replace(/\s+/g, '').toLowerCase() === subject.replace(/\s+/g, '').toLowerCase()
+  )
+  if (!normalizedSubject) {
     console.log("Subject not found:", subject)
     return notFound()
   }
+  const subjectData = classData[normalizedSubject]
 
-  const chapterData = subjectData.chapters.find((c: any) => c.name === decodeURIComponent(chapter))
+  const normalizedChapter = subjectData.chapters.find(
+    (c: any) => c.name.replace(/\s+/g, '').toLowerCase() === decodeURIComponent(chapter).replace(/\s+/g, '').toLowerCase()
+  )
+  const chapterData = normalizedChapter
   if (!chapterData) {
     console.log("Chapter not found:", decodeURIComponent(chapter))
     console.log(
