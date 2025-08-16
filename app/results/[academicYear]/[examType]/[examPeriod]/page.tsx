@@ -88,10 +88,18 @@ export default function StudentSearchPage({ params }: PageProps) {
       const student = findStudent(selectedClass, rollNumber, studentName)
 
       if (student) {
-        // Redirect to result page
-        router.push(
-          `/results/${academicYear}/${examType}/${encodeURIComponent(examPeriod)}/student/${student.id}`,
-        )
+        const isMultiModeExam =
+          examType === "bodha-manthan" && examPeriod === "I - July 2025" && academicYear === "2025-26"
+
+        if (isMultiModeExam) {
+          // Redirect to multi-mode result page
+          router.push(
+            `/results/${academicYear}/${examType}/${encodeURIComponent(examPeriod)}/student/${student.id}/multi-mode`,
+          )
+        } else {
+          // Redirect to regular result page
+          router.push(`/results/${academicYear}/${examType}/${encodeURIComponent(examPeriod)}/student/${student.id}`)
+        }
       } else {
         setNameError("Student not found. Please check the name, class, and roll number.")
         setIsVerifying(false)
