@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { FileText, ArrowRight, Play, Shield, BarChart3, Clock, Trophy } from "lucide-react"
+import { FileText, ArrowRight, Play, Shield, BarChart3, Clock, Trophy, Star, Calendar } from "lucide-react"
 
 interface HeroSectionProps {
   isVisible: boolean
@@ -28,6 +28,40 @@ export default function HeroSection({ isVisible }: HeroSectionProps) {
               development
             </CardDescription>
           </CardHeader>
+
+          <div className="mb-8">
+            <Card className="bg-gradient-to-r from-green-500 to-blue-600 text-white shadow-xl border-0 transform hover:scale-105 transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-center mb-4">
+                  <Star className="w-8 h-8 text-yellow-300 mr-3 animate-pulse" />
+                  <h3 className="text-2xl lg:text-3xl font-bold">Results Now Available!</h3>
+                  <Star className="w-8 h-8 text-yellow-300 ml-3 animate-pulse" />
+                </div>
+                <div className="text-center mb-6">
+                  <p className="text-lg lg:text-xl mb-2">
+                    <strong>Bodha Manthan I - July 2025</strong>
+                  </p>
+                  <p className="text-base opacity-90 flex items-center justify-center">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Academic Year 2025-26 Results
+                  </p>
+                </div>
+                <div className="text-center">
+                  <Link href="/results/2025-26/bodha-manthan/I%20-%20July%202025">
+                    <Button
+                      size="lg"
+                      className="bg-white text-green-600 hover:bg-gray-100 text-xl px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300 font-semibold"
+                    >
+                      <Trophy className="mr-3 h-6 w-6" />
+                      Check Your Results Now
+                      <ArrowRight className="ml-3 h-6 w-6" />
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           <CardContent className="text-center">
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
               <Link href="/results">
